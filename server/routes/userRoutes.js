@@ -2,7 +2,8 @@ const express = require("express");
 const User = require("../models/userModel");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-
+const jwt = require('jsonwebtoken');
+const authMiddleware = require("../middlewares/authMiddleware");
 router.post('/register',async(req,res)=>{
     try{
         const userExist = await User.findOne({email:req.body.email});
@@ -48,14 +49,27 @@ router.post('/login',async(req,res)=>{
                 message:'Invalid password'
             })
         }
+
+        const token = jwt.sign({userId: user._id},"mybookings",{
+            expiresIn:"1d",
+        })
+
         res.send({
             success:true,
-            message:'logged in'
+            message:'logged in',
+            token:token,
         })
     }
     catch(err){
         console.log(err);
     } 
 });
+
+
+router.get('/get-current-user',authMiddleware,async(req,res)=>{
+    //inform the server if the token is valid or not and who is the user
+    const user = await User.findById(req.body.userId).select("-password");
+    res.send({success:true,message:'your are authorized',data:user});
+})
 
 module.exports = router;
