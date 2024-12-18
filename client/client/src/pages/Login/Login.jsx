@@ -1,9 +1,9 @@
-
+import { useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { LoginUser } from '../../api/users';
-
+import { useNavigate } from 'react-router-dom';
 function Login() {
-    
+      const navigate = useNavigate();
       const onFinish = async(values)=>{
         try{
         console.log(values);
@@ -20,6 +20,13 @@ function Login() {
     }
     
     }
+
+
+    useEffect(()=>{
+      if(localStorage.getItem('token')){
+        navigate("/");
+      }
+    },[])
  return (
  <header className="App-header">
    <main className="main-area mw-500 text-center px-3">
