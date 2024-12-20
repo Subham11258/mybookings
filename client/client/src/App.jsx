@@ -4,6 +4,7 @@ import Login from "./pages/Login"
 import Home from './pages/Home/Home';
 import ProtectedRoute from './components/ProtectedRoutes';
 import Admin from './pages/Admin';
+import Profile from './pages/Profile';
 export default function App() {
   return (
     <div>
@@ -14,7 +15,12 @@ export default function App() {
             <Home />
             </ProtectedRoute>
             } />
-          <Route path='/Admin' element={
+            <Route path='/profile' element={
+            <ProtectedRoute>
+            <Profile/>
+            </ProtectedRoute>
+            } />
+          <Route path='/admin' element={
             <ProtectedRoute>
             <Admin/>
             </ProtectedRoute>

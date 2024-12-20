@@ -23,7 +23,12 @@ export default function ProtectedRoute({children}){
             label:`${user?user.name:""}`,
             icon:<UserOutlined/>,
             children:[{
-                label:"My Profile",
+                label:<span onClick={()=>{
+                    user.isAdmin?navigate("/admin"):navigate("/profile")
+
+                }}>
+                    my Profile
+                </span>,
                 icon:<ProfileOutlined/>
             },
             {
@@ -53,6 +58,7 @@ export default function ProtectedRoute({children}){
     useEffect(()=>{
         if(localStorage.getItem('token')){
             getValidUser();
+            
         }
         else{
             navigate('/login'); 
