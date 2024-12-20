@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { LoginUser } from '../../api/users';
 import { useNavigate } from 'react-router-dom';
+import {message} from 'antd';
+
 function Login() {
       const navigate = useNavigate();
       const onFinish = async(values)=>{
@@ -11,11 +13,15 @@ function Login() {
         if(response.success){
           localStorage.setItem('token',response.token);
           window.location.href='/';
+          message.success('user logged in')
           console.log(response);
+        }else{
+          message.error(response.error);
         }
         
     }
     catch(err){
+
       console.log(err);
     }
     

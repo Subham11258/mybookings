@@ -1,18 +1,23 @@
-import { useEffect } from "react"
+import { useEffect,useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getCurrentUser } from "../api/users";
+import { getCurrentUser } from "../api/users.js";
+import {message} from 'antd';
+// eslint-disable-next-line react/prop-types
 export default function ProtectedRoute({children}){
-    
+    const [user,setUser] = useState({});
     const navigate = useNavigate();
     const getValidUser = async()=>{
         try{
             const response = await getCurrentUser();
-            console.log(response);
-            navigate('/');
+            
+            console.log(response.data.name);
+            setUser(response.data);
+            
 
         }
         catch(err){
             console.log(err);
+            message.error(err.message);
         }
     }
     useEffect(()=>{
@@ -25,6 +30,7 @@ export default function ProtectedRoute({children}){
     },[])
     return (
         <div>
+        <div>{user.name}</div>
             {children}
         </div>
     )

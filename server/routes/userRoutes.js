@@ -69,6 +69,7 @@ router.post('/login',async(req,res)=>{
 router.get('/get-current-user',authMiddleware,async(req,res)=>{
     //inform the server if the token is valid or not and who is the user
     const user = await User.findById(req.body.userId).select("-password");
+    console.log(typeof user);
     res.send({success:true,message:'your are authorized',data:user});
 })
 
