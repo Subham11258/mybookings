@@ -3,6 +3,7 @@ import './App.css'
 import Login from "./pages/Login"
 import Home from './pages/Home/Home';
 import ProtectedRoute from './components/ProtectedRoutes';
+import Admin from './pages/Admin';
 export default function App() {
   return (
     <div>
@@ -11,6 +12,11 @@ export default function App() {
           <Route path='/' element={
             <ProtectedRoute>
             <Home />
+            </ProtectedRoute>
+            } />
+          <Route path='/Admin' element={
+            <ProtectedRoute>
+            <Admin/>
             </ProtectedRoute>
             } />
           <Route path="/login" element={<Login />} />
