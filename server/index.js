@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const movieRoutes = require('./routes/moviesRoutes');
+const showRoutes = require('./routes/showRoutes.js');
+const theatreRoutes = require('./routes/theatreRoutes.js');
 const app = express();
 const userRoutes = require("./routes/userRoutes");
 const mongoose = require('mongoose');
@@ -12,6 +14,8 @@ app.use(cors());
 mongoose.connect(dburl).then(()=>console.log("Connected to db")).catch((err)=>console.log(err));
 app.use('/api/users',userRoutes);
 app.use('/api/movies',movieRoutes);
+app.use('/api/shows',showRoutes);
+app.use('/api/theatres',theatreRoutes);
 app.listen(3000,()=>{
     console.log('server is connected on port 3000')
 })
