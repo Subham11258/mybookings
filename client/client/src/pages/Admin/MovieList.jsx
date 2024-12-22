@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { getAllMovies } from "../../api/movies";
-import { Table } from "antd";
+import { Button, Table } from "antd";
+import MovieForm from "./MovieForm";
 
 
 export default function MovieList() {
     const [movies,setMovies] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
   async function getData(){
     const response = await getAllMovies();
     const allMovies = response.data;
@@ -52,6 +54,16 @@ export default function MovieList() {
   }
 ]
   return (
+    <>
+    <div className="d-flex justify-content-end">
+      <Button onClick={()=>{
+        setIsModalOpen(true);
+      }}>
+        Add Movie
+      </Button>
+    </div>
+    {isModalOpen && <MovieForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
     <Table columns={tableHeadings} dataSource={movies}/>
+    </>
   )
 }

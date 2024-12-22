@@ -3,19 +3,22 @@ const cors = require('cors');
 const movieRoutes = require('./routes/moviesRoutes');
 const showRoutes = require('./routes/showRoutes.js');
 const theatreRoutes = require('./routes/theatreRoutes.js');
+const bookingRoute = require('./routes/bookingRoutes');
+
 const app = express();
 const userRoutes = require("./routes/userRoutes");
 const mongoose = require('mongoose');
-const dburl = "mongodb+srv://Subham11258:654finVE1I2XN79L@cluster-projects.ggb8z.mongodb.net/mybookings?retryWrites=true&w=majority&appName=Demo";
-app.use(express.json());
 
+app.use(express.json());
+require("dotenv").config();
 app.use(cors());
 
-mongoose.connect(dburl).then(()=>console.log("Connected to db")).catch((err)=>console.log(err));
+mongoose.connect(process.env.DATABASE_URL).then(()=>console.log("Connected to db")).catch((err)=>console.log(err));
 app.use('/api/users',userRoutes);
 app.use('/api/movies',movieRoutes);
 app.use('/api/shows',showRoutes);
 app.use('/api/theatres',theatreRoutes);
+app.use('/api/bookings', bookingRoute)
 app.listen(3000,()=>{
     console.log('server is connected on port 3000')
 })

@@ -10,7 +10,7 @@ const app = express();
 //delete a movie
 //fetch a single movie using id
 
-router.post('/add-movies',async(req,res)=>{
+router.post('/add-movie',async(req,res)=>{
     try{
         const newMovie = new Movie(req.body);
         await newMovie.save();

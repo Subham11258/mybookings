@@ -16,7 +16,7 @@ export default function ProtectedRoute({children}){
 
     const navItems = [
         {
-            label:"Home",
+            label:<Link to="/">Home</Link>,
             icon:<HomeOutlined/>,
         },
         {
