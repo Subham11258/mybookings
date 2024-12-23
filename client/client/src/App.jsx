@@ -7,6 +7,7 @@ import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import SingleMovie from './pages/SingleMovie';
 import BookShow from "./pages/BookShow";
+import Register from './pages/Register';
 export default function App() {
   return (
     <div>
@@ -33,6 +34,7 @@ export default function App() {
             </ProtectedRoute>
             } />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/book-show/:id" element={
             <ProtectedRoute>
               <BookShow/>

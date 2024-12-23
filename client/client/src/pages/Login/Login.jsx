@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { LoginUser } from '../../api/users';
 import { useNavigate } from 'react-router-dom';
-import {message} from 'antd';
+import { message } from 'antd';
 
 function Login() {
       const navigate = useNavigate();
@@ -84,6 +84,9 @@ function Login() {
              Login
            </Button>
          </Form.Item>
+         <Form.Item className="d-block">
+           <span>Don’t have an account? <a href="/register">Register here</a></span>
+         </Form.Item>
        </Form>
      </section>
    </main>
@@ -92,22 +95,4 @@ function Login() {
 }
 
 
-
-
 export default Login;
-
-//Protect the route for home page
-//If user is logged in only then route for homepage should be accessible
-//don't show login page again if user is logged in
-//check the token in the local storage
-//add a check in login page for local storage
-//if token exists take the user to home page
-//else ask the user to login
-//The route for homepage should be protected
-//check if they have a valid token or not and let them go to homepage
-//else take them back to the login page
-//how to check for validity of the token
-//Api call to the backend to check the token for validity
-//if the backend says all is well
-//let them in or them them login
-

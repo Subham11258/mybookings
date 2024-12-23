@@ -1,4 +1,5 @@
 const router = require('express').Router();
+require('dotenv').config();
 const stripe = require('stripe')(process.env.SK);
 const authMiddleware = require("../middlewares/authMiddleware");
 const Booking = require('../models/bookingModel');

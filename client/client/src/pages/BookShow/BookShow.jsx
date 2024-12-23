@@ -13,9 +13,9 @@ const BookShow = () => {
   const navigate = useNavigate();
   const getData = async () => {
     try {
-      const response = await getShowById({ showId: params.id });
+      const response = await getShowById({ id: params.id });
       if (response.success) {
-        setShow(response.data);
+        setShow([...response.data]);
         // message.success(response.message);
         console.log(response.data);
       } else {
