@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoutes';
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import SingleMovie from './pages/SingleMovie';
+import BookShow from "./pages/BookShow";
 export default function App() {
   return (
     <div>
@@ -32,6 +33,11 @@ export default function App() {
             </ProtectedRoute>
             } />
           <Route path="/login" element={<Login />} />
+          <Route path="/book-show/:id" element={
+            <ProtectedRoute>
+              <BookShow/>
+            </ProtectedRoute>
+          }/>
         </Routes>
       </BrowserRouter>
 
