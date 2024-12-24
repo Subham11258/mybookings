@@ -1,4 +1,4 @@
-🌟 **MyBookings - MERN Stack Application **🌟
+**🌟 MyBookings - MERN Stack Application 🌟**
 🚀 **About the Project**
 MyBookings is a full-stack MERN (MongoDB, Express, React, Node.js) application designed to streamline the process of managing bookings efficiently. This project incorporates a user-friendly interface, secure payment handling, and seamless integration of modern web technologies to deliver a robust and intuitive booking system.
 
