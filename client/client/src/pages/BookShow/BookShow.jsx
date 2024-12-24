@@ -15,8 +15,8 @@ const BookShow = () => {
     try {
       const response = await getShowById({ id: params.id });
       if (response.success) {
-        setShow([...response.data]);
-        // message.success(response.message);
+        setShow(response.data);
+        message.success(response.message);
         console.log(response.data);
       } else {
         message.error(response.message);

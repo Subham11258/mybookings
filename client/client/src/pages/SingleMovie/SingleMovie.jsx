@@ -24,11 +24,14 @@ function SingleMovie() {
   const getData = async () => {
     try {
       const response = await getMovieById(params.id);
+      
       if (response.success) {
         setMovie(response.data);
         console.log(response.data);
       } else {
+        console.log("Error Gandu",response.message);
         message.error(response.message);
+
       }
     } catch (err) {
       message.error(err.message);
@@ -37,9 +40,10 @@ function SingleMovie() {
 
   const getAllTheatres = async () => {
     try {
-      const response = await getAllTheatresByMovie({ movie: params.id, date });
+      const response = await getAllTheatresByMovie({ movie: params.id, date:date });
       if (response.success) {
         setTheatres(response.data);
+        console.log(response.data);
       } else {
         message.error(response.message);
       }
