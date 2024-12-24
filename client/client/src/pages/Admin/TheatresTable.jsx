@@ -1,9 +1,11 @@
 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy} from 'react';
 import { getAllTheatresForAdmin, updateTheatre } from '../../api/theatres';
-import { message, Button, Table } from 'antd';
-
+import { message} from 'antd';
+import { Button} from 'antd';
+// import { Table} from 'antd';
+const LazyTable = lazy(()=>import('antd/es/table'));
 const TheatresTable = () => {
     const [theatres, setTheatres] = useState([]);
 
@@ -100,9 +102,14 @@ const TheatresTable = () => {
 
     return(
       <>
-        {theatres && theatres.length > 0 && <Table dataSource={theatres} columns={columns} />}
+        {theatres && theatres.length > 0 && 
+        <Suspense fallback={<div>Loading Table...</div>}>
+      <LazyTable dataSource={theatres} columns={columns} />
+    </Suspense>}
       </>
     )
 }
+
+//<Table dataSource={theatres} columns={columns} />
 
 export default TheatresTable;

@@ -18,7 +18,8 @@ app.use('/api/users',userRoutes);
 app.use('/api/movies',movieRoutes);
 app.use('/api/shows',showRoutes);
 app.use('/api/theatres',theatreRoutes);
-app.use('/api/bookings', bookingRoute)
+app.use('/api/bookings', bookingRoute);
+app.use(express.static('dist'));
 app.listen(3000,()=>{
     console.log('server is connected on port 3000')
 })
