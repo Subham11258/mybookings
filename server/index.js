@@ -14,7 +14,7 @@ require("dotenv").config();
 app.use(cors());
 app.use(cors(
     {
-        origin:[""],
+        origin:["https://mybookings-frontend.vercel.app/login"],
         methods:["POST","GET","PUT","DELETE"],
         credentials:true
 
