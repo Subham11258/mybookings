@@ -12,6 +12,14 @@ const mongoose = require('mongoose');
 app.use(express.json());
 require("dotenv").config();
 app.use(cors());
+app.use(cors(
+    {
+        origin:[""],
+        methods:["POST","GET","PUT","DELETE"],
+        credentials:true
+
+    }
+));
 
 mongoose.connect(process.env.DATABASE_URL).then(()=>console.log("Connected to db")).catch((err)=>console.log(err));
 app.use('/api/users',userRoutes);
