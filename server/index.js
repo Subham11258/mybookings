@@ -32,3 +32,6 @@ app.listen(3000,()=>{
     console.log('server is connected on port 3000')
 })
 
+module.exports = (req, res) => {
+    res.status(200).send("Backend is working!");
+};
