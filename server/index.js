@@ -12,14 +12,14 @@ const mongoose = require('mongoose');
 app.use(express.json());
 require("dotenv").config();
 app.use(cors());
-app.use(cors(
-    {
-        origin:["https://mybookings-frontend.vercel.app/login"],
-        methods:["POST","GET","PUT","DELETE"],
-        credentials:true
+// app.use(cors(
+//     {
+//         origin:["https://mybookings-frontend.vercel.app/login"],
+//         methods:["POST","GET","PUT","DELETE"],
+//         credentials:true
 
-    }
-));
+//     }
+// ));
 
 mongoose.connect(process.env.DATABASE_URL).then(()=>console.log("Connected to db")).catch((err)=>console.log(err));
 app.use('/api/users',userRoutes);
@@ -32,6 +32,6 @@ app.listen(3000,()=>{
     console.log('server is connected on port 3000')
 })
 
-module.exports = (req, res) => {
-    res.status(200).send("Backend is working!");
-};
+// module.exports = (req, res) => {
+//     res.status(200).send("Backend is working!");
+// };
