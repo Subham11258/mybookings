@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 app.use(express.json());
 require("dotenv").config();
 app.use(cors());
+app.use(cors({origin:'https://mybookings-frontend.vercel.app/'}));
 // app.use(cors(
 //     {
 //         origin:["https://mybookings-frontend.vercel.app/login"],
