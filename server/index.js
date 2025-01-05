@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 app.use(express.json());
 require("dotenv").config();
 app.use(cors());
-app.use(cors({origin:'https://mybookings-frontend.vercel.app/'}));
+// app.use(cors({origin:'https://mybookings-frontend.vercel.app/'}));
 // app.use(cors(
 //     {
 //         origin:["https://mybookings-frontend.vercel.app/login"],
@@ -21,6 +21,21 @@ app.use(cors({origin:'https://mybookings-frontend.vercel.app/'}));
 
 //     }
 // ));
+
+const allowedOrigins = ['https://mybookings-frontend.vercel.app'];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Include if your app uses cookies or sessions
+};
+
+app.use(cors(corsOptions));
 
 mongoose.connect(process.env.DATABASE_URL).then(()=>console.log("Connected to db")).catch((err)=>console.log(err));
 app.use('/api/users',userRoutes);
