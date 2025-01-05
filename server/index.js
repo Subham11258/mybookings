@@ -26,7 +26,7 @@ const allowedOrigins = ['https://mybookings-frontend.vercel.app'];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
+    if (allowedOrigins.includes(origin?.replace(/\/$/, '')) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -36,6 +36,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cors({ origin: '*' }));
 
 mongoose.connect(process.env.DATABASE_URL).then(()=>console.log("Connected to db")).catch((err)=>console.log(err));
 app.use('/api/users',userRoutes);
